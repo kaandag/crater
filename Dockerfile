@@ -34,7 +34,12 @@ RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 
+
 # Set working directory
 WORKDIR /var/www
+
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+RUN php artisan storage:link || true
+RUN php artisan key:generate
 
 USER $user

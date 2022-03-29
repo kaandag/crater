@@ -16,7 +16,6 @@ services:
       - ./docker-compose/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:rw,delegated
     networks:
       - crater
-
   db:
     image: mariadb
     restart: always
